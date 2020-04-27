@@ -1,0 +1,6 @@
+all: main
+	./main
+	./main -help
+	./main -i
+	./main -a
+	./main -show
