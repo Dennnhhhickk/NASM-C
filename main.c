@@ -12,8 +12,6 @@
 	#define right 2.0
 #endif
 
-static int itr;
-
 void swap(double *a, double *b)
 {
 	double tmp = *a;

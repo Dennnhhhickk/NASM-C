@@ -41,8 +41,10 @@ void func(int commande, int size, double a[], int b[])
 			{
 				printf("TESTING ROOT:\n");
 				double l, r;
+				itr = 0;
 				scanf("%lf %lf", &l, &r);
 				printf("%f\n", root(testfunc1, testfunc2, l, r, 1e-6));
+				printf("Iteration: %d\n", itr);
 			}
 			break;
 		default:

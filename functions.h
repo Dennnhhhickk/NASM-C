@@ -11,6 +11,8 @@ double root(double(*)(double), double(*)(double), double, double, double);
 void swap(double*, double*);
 void func(int, int, double[], int[]);
 
+int itr;
+
 double testfunc(double x)
 {
 	return x * x * x * x - 24 * x * x * x + 107 * x * x - x + 4;
