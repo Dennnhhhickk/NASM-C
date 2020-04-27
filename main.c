@@ -1,6 +1,5 @@
 #include "Commands.h"
 #include <string.h>
-#include <math.h>
 #include <stdlib.h>
 
 #ifndef TEST
