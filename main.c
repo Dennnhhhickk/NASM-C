@@ -27,12 +27,12 @@ double root(double (*f)(double), double (*g)(double), double a, double b, double
 		swap(&a, &b);
 
 	double m;
-	while (1)
+	while (b - a > eps)
 	{
 		itr++;
 		m = (a + b) / 2.0;
-		if (fabs(f(m) - g(m)) < eps)
-			break;
+		//if (fabs(f(m) - g(m)) < eps)
+		//	break;
 		if ((f(a) - g (a)) * (f(m) - g(m)) > 0)
 			a = m;
 		else
