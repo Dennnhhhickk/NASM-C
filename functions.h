@@ -15,7 +15,7 @@ int itr;
 
 double testfunc(double x)
 {
-	return x * x * x * x - 24 * x * x * x + 107 * x * x - x + 4;
+	return x * x * x - 4 * x;
 }
 
 double testfunc1(double x)

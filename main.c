@@ -43,28 +43,22 @@ double integral(double (*f)(double), double a, double b, double eps)
 {
 	if (a > b)
 		swap(&a, &b);
-	int n = 1000000;
-	double *arr = malloc(sizeof(double) * n + 1), step = (b - a) / n;
-	for (int i = 0; i <= n; i++)
-		arr[i] = f(a + i * step);
+	int n = 1;
+	double sum = f(a) + f(b), step = (b - a) / n;
 	double I = 10, I1 = 0;
-	while (I > 15 * eps + I1)
+	while (fabs(I - I1) > 15 * eps)
 	{
-		I = 0;
-		I1 = 0;
-		arr = realloc(arr, sizeof(double) * n * 2 + 1);
-		for (int i = n; i >= 0; i--)
-			arr[i * 2] = arr[i];
-		step /= 2;
-		for (int i = 0; i < n; i++)
-			arr[2 * i + 1] = f(a + i * step * 2);
-		for (int i = 0; i < n; i++)
-			I += step * (arr[2 * i] + 4 * arr[2 * i + 1] + arr[2 * (i + 1)]) / 3;
-		for (int i = 0; i < n / 2; i++)
-			I1 += 2 * step * (arr[4 * i] + 4 * arr[4 * i + 2] + arr[4 * (i + 1)]) / 3;
 		n *= 2;
+		step /= 2;
+		double tmp = 0;
+		I1 = I;
+		I = 0;
+		for (int i = 0; i < n / 2; i++)
+			tmp += f(a + step + 2 * i * step);
+		tmp *= 2;
+		I = (sum + 2 * tmp) * step / 3;
+		sum += tmp;
 	}
-	free(arr);
 	return I;
 }
 
