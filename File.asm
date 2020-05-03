@@ -10,9 +10,6 @@ section .text
 GLOBAL f1
 GLOBAL f2
 GLOBAL f3
-GLOBAL testf1
-GLOBAL testf2
-GLOBAL testf3
 f1:
 	push ebp
 	mov ebp, esp
@@ -63,48 +60,3 @@ f3:
 	mov esp, ebp
 	pop ebp
 	ret
-
-testf1:
-	push ebp
-	mov ebp, esp
-
-	fld1
-	fld qword[ebp + 0x8]
-	fld qword[ebp + 0x8]
-	fld qword[ebp + 0x8]
-	fmulp
-	fmulp
-	fsubp
-
-	mov esp, ebp
-	pop ebp
-	ret
-
-testf2:
-	push ebp
-	mov ebp, esp
-
-	fld qword[ebp + 0x8]
-	fld qword[ebp + 0x8]
-	fmulp
-	fld qword[const4]
-	fld qword[ebp + 0x8]
-	fmulp
-	faddp
-
-	mov esp, ebp
-	pop ebp
-	ret
-
-testf3:
-	push ebp
-	mov ebp, esp
-
-	fld qword[const6]
-	fld qword[ebp + 0x8]
-	fsubp
-
-	mov esp, ebp
-	pop ebp
-	ret
-

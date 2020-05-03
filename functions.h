@@ -3,13 +3,9 @@
 extern double f1(double);
 extern double f2(double);
 extern double f3(double);
-extern double testf1(double);
-extern double testf2(double);
-extern double testf3(double);
 double integral(double (*)(double), double, double, double);
 double root(double(*)(double), double(*)(double), double, double, double);
 void swap(double*, double*);
-void func(int, int, double[], int[]);
 
 int itr;
 
@@ -20,10 +16,10 @@ double testfunc(double x)
 
 double testfunc1(double x)
 {
-	return fabs(x);
+	return -x * x;
 }
 
 double testfunc2(double x)
 {
-	return 1 / (x);
+	return 4 * x - 1;
 }

@@ -2,16 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-#ifndef TEST
-	#define Fs {f1, f2, f3}
-	#define left -1.9
-	#define right 2.0
-#else
-	#define Fs {testf3, testf2, testf1}
-	#define left -2.0
-	#define right 2.0
-#endif
-
 void swap(double *a, double *b)
 {
 	double tmp = *a;
@@ -64,28 +54,29 @@ double integral(double (*f)(double), double a, double b, double eps)
 
 int main(int argc, char* argv[])
 {
-	double eps = 1e-6;
+	double eps = 1e-3;
 	int formul_count = 3;
-	double doubles[6];
+	double doubles[9];
 	int ints[3], k = 0;
-	double (*formuls[])(double) = Fs;
+	double (*formuls[])(double) = {f1, f2, f3};
 
-	double a = left, b = right;
+	double a = -1.9, b = 6;
 	//scanf("%lf %lf", &a, &b);
 
 	for (int i = 0; i < 3; i++)
 	{
 		itr = 0;
-		doubles[i] = root(formuls[i], formuls[(i + 1) % 3], a, b, eps);
+		doubles[i] = root(formuls[i], formuls[(i + 1) % 3], a, b,  eps / 6);
+		doubles[3 + i] = formuls[i](doubles[i]);
 		ints[i] = itr;
 	}
 
-	doubles[3] = integral(formuls[0], doubles[0], doubles[2], eps);
-	doubles[4] = integral(formuls[1], doubles[0], doubles[1], eps);
-	doubles[5] = integral(formuls[2], doubles[1], doubles[2], eps);
+	doubles[6] = integral(formuls[0], doubles[0], doubles[2], eps / 30);
+	doubles[7] = integral(formuls[1], doubles[0], doubles[1], eps / 30);
+	doubles[8] = integral(formuls[2], doubles[1], doubles[2], eps / 30);
 
 	if (argc == 1)
-		printf("%f\n", doubles[3] - (doubles[4] + doubles[5]));
+		printf("%.4f\n", doubles[6] - (doubles[7] + doubles[8]));
 	else
 		for (int i = 1; i < argc; i++)
 			for (int j = 0; j < commande_list_size; j++)
